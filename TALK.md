@@ -208,7 +208,7 @@ off( … )
 fire( … )
 ```
 
-# Leaflet Utility Functions
+## Leaflet Utility Functions
 Before reaching for underscore, check `L.Util`.
 
 ```javascript
@@ -781,8 +781,5 @@ var AdvancedMapDraw = L.Class.extend({
 });
 ```
 
-## Demo Time
-- Show data management from the server
-- Show using a factory method to create a map that is reusable throughout a website
-- Show updating a bunch of stuff outside of the map
-- Show drawing and updating stuff on the map
+# Really Advanced Topics
+Show Backbone.js version of MyVIP maps work
