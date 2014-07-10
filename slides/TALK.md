@@ -20,7 +20,7 @@ class:middle, center
 
 ---
 
-# Three Reasons to give Leaflet a try
+## Three Reasons to give Leaflet a try
 
 1. Open Source with serious backers
 2. Simple and easy to use API
@@ -28,7 +28,7 @@ class:middle, center
 
 ---
 
-# What's in the ecosystem?
+## What's in the ecosystem?
 
 - Your Geo Data (PostGIS, MongoDB)
 - Map Tiles (Google, MapBox, OpenStreetMaps)
@@ -219,10 +219,9 @@ marker.on('click', function () {
 * Methods for [modifying](http://leafletjs.com/reference.html#map-set-methods) and [getting](http://leafletjs.com/reference.html#map-get-methods) the state of the Map
 * [Conversion methods](http://leafletjs.com/reference.html#map-conversion-methods) and [Transformations](http://leafletjs.com/reference.html#transformation)
 * Take a look at [Controls](http://leafletjs.com/reference.html#control)
+* [Vector layers](http://leafletjs.com/reference.html#path)
 
 ---
-
-class: middle
 
 # Words of warning
 
@@ -233,8 +232,6 @@ class: middle
 
 ---
 
-class: middle
-
 # Leaflet Plugins, Mixins, and Extensions
 
 They're all the same thing really. The API provides a lot of the basic building blocks for making what you need.
@@ -242,9 +239,7 @@ They're all the same thing really. The API provides a lot of the basic building 
 ---
 
 ## It's got Class
-JavaScript, not so much...but Leaflet rolled their own and uses it throughout the ecosystem. Plan on using this if you are going to build your own plugin.
-
-Things it will do for you:
+JavaScript, not so much...things Leaflet will do for you:
 
 * Proper inheritance with `extend`
 * Options (see `setOptions`)
@@ -294,10 +289,11 @@ fire( … )
 ```
 
 ---
-class: middle
 
 ## Leaflet Utility Functions
+
 Before reaching for underscore, check `L.Util`.
+
 ```javascript
 L.Util.extend(destination, source);   // Leaflet
 _.extend(destination, *sources);      // Underscore
@@ -321,13 +317,10 @@ _.template(templateString, [data], [settings]);
 
 ---
 
-class: middle
-
 # Three Examples
 
 ---
 
-class: middle
 # Project Specific Mixin
 
 ---
@@ -597,8 +590,9 @@ var FixedMarker = L.Class.extend({
 
 ---
 
-### Extending Leaflet.Draw
+# Extending Leaflet.Draw
 
+---
 ```javascript
 
 var AdvancedMapDraw = L.Class.extend({
@@ -855,7 +849,5 @@ var AdvancedMapDraw = L.Class.extend({
 
 ---
 
-class: middle
-
-# Really Advanced Topics
-Show Backbone.js version of MyVIP maps work
+# Advanced Topics
+Quick Backbone.js & Leaflet.js demo

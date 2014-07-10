@@ -5,19 +5,29 @@ body {
   font-weight: 600;
   font-style: normal;
   font-size: 28px;
-  color: #3e3f40;
+  color: #242526;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: "brandon-grotesque";
   font-weight: 900;
-  /*font-style: italic;*/
   line-height: 1.3em;
-  color: #3e3f40;
-  /*text-shadow: 1px 1px 1px #AEAEAE;*/
+  color: #242526;
+}
+
+h1 {
+  letter-spacing: 2px;
+  font-style: italic;
   text-transform: uppercase;
+}
+
+h2 {
+  text-transform: uppercase;
+  line-height: 1.2em;
   letter-spacing: 2px;
 }
+
+h3 {}
 
 .remark-code, .remark-inline-code {
   font-family: "source-code-pro", Consolas, "Liberation Mono", Courier, monospace;
