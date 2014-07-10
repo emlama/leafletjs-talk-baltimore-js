@@ -1,22 +1,42 @@
-# Three Reasons to give Leaflet a try
-1. It's open source but backed by Mapbox. You can be confident that it will be maintained.
-2. It's designed with "simplicity, performance and usability in mind". The API is easy to digest and it's really easy to extend.
-3. It's solid. It powers Flickr, Foursquare, Pintrest, and so on.
+layout: true
+class: middle
 
-# What's the ecosystem?
+---
+
+class:middle, center
+
+# The "We're back" event!
+
+![logo](images/bmorejs-shield.png)
+
+---
+
+# Who the #^!! is this ginger?
+*or why you should (or should not) listen to me*
+
+---
+
+# *Get on with it already*
+
+---
+
+# Three Reasons to give Leaflet a try
+
+1. Open Source with serious backers
+2. Simple and easy to use API
+3. Powers Flickr, Foursquare, Pintrest, and so on.
+
+---
+
+# What's in the ecosystem?
 
 - Your Geo Data (PostGIS, MongoDB)
 - Map Tiles (Google, MapBox, OpenStreetMaps)
 - Pull it together client side (Google Maps, Leaflet, Open Layers)
 
-# Mistakes I've Made
-Things to watch for up ahead:
+---
 
-* Not creating Leaflet objects
-* Over-reliance on outside libraries (jQuery & Underscore)
-* There was a third one but I honestly can't remember it
-
-# Get started
+## Hello World
 ```javascript
 var map = L.map('map', {
   center: [39.2856, -76.6090],
@@ -29,12 +49,31 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(this.map);
 ```
 
-Two types of layers:
+---
+## And You Get This
 
-1. Your base layer – Tiles
-2. Everything else that goes on top of them – Markers, Popups, and Vector Layers
+```html
+<div class="leaflet-container">
+  <div class="leaflet-map-pane">
+    <div class="leaflet-tile-pane">
+      <div class="leaflet-layer"></div>
+    </div>
+    <div class="leaflet-objects-pane">
+      <div class="leaflet-shadow-pane"></div>
+      <div class="leaflet-overlay-pane"></div>
+      <div class="leaflet-marker-pane"></div>
+      <div class="leaflet-popup-pane"></div>
+    </div>
+  </div>
+  <div class="leaflet-control-container"></div>
+</div>
+```
+
+---
 
 # Make your own Markers, Icons, and Popups
+
+---
 
 ## Markers
 
@@ -43,6 +82,12 @@ As simple as:
 var marker = L.marker([50.5, 30.5]);
 marker.addTo(map);
 ```
+
+*really just a top level object*
+
+---
+
+## And Events
 
 And you got all of these events:
 
@@ -64,12 +109,19 @@ popupopen
 popupclose
 ```
 
-*Take a look at all of the [functions a marker](http://leafletjs.com/reference.html#marker-addto) has.*
+*Plus [functions to boot](http://leafletjs.com/reference.html#marker-addto).*
 
-## Icons
+---
+
+class:middle
+# Icons
+*AKA You don't want those blue markers*
 
 Two options `L.Icon` and `L.divIcon`
 
+---
+
+## L.Icon
 ```javascript
 // Use this if you have an image you want to use
 var myIcon = L.icon({
@@ -85,7 +137,9 @@ var myIcon = L.icon({
 });
 ```
 
-**–or–**
+---
+
+## L.divIcon
 
 ```javascript
 // Use this if you want to use CSS3 for styling it
@@ -97,48 +151,56 @@ var myIcon = L.divIcon({
 });
 ```
 
+---
+
+class:middle
+
 And then include it in when you make your marker.
 
-`L.marker([lat, lng], {icon: myIcon}).addTo(map);`
+```javascript
+L.marker([lat, lng], {icon: myIcon}).addTo(map);
+```
 
-## Popups are simple
+---
 
-Don't do silly things like try and manage your own popups...ahem!
+class: middle
 
+# Popups are simple
+
+---
 ```javascript
 function markerClickAction (uid,lat,lng,type) {
 
-  var k = '.'+uid,
-    obj = $(k);
+  var k = '.'+uid, obj = $(k);
 
-  //console.log( type, obj.hasClass('open-leaflet') );
+  if ( !obj.hasClass('open-leaflet') ) {
 
-  if( !obj.hasClass('open-leaflet') ) {
-    //pans to center of map
     map.panTo(new L.LatLng(lat,lng));
 
-    //hides open popups
-    $('.open_project, .open_expert').fadeOut().closest('.leaflet-marker-icon').removeClass('open-leaflet');
+    $('.open_project, .open_expert').fadeOut()
+      .closest('.leaflet-marker-icon')
+      .removeClass('open-leaflet'); //hides open popups
 
-    //opens correct popup
-    obj.addClass('open-leaflet');
+    obj.addClass('open-leaflet'); //opens correct popup
     var klass = '.open_'+type;
 
-    //console.log( obj.closest(klass) );
-
-    obj.find(klass).fadeIn().on('click', 'button.close',function(event){
-      $('.open_project, .open_expert').fadeOut().closest('.leaflet-marker-icon').removeClass('open-leaflet');
+    obj.find(klass).fadeIn().on('click', 'button.close',
+    function (event) {
+      $('.open_project, .open_expert').fadeOut()
+        .closest('.leaflet-marker-icon')
+        .removeClass('open-leaflet');
       event.stopPropagation();
       return false;
     }).on('click', 'a', function(event){
-      //console.log( 'goto ' + $(this).attr('href') );
       event.stopPropagation();
     });
   }
 }
 ```
 
-Just do this:
+---
+
+## Just do this
 
 ```javascript
 marker.bindPopup(popupContent);
@@ -150,15 +212,34 @@ marker.on('click', function () {
 
 *I was able to do this by shoving the whole popup into `L.divIcon`.* **Totally bad form.**
 
-## Other simple things to read up on
+---
+
+## Other things to read up on
 
 * Methods for [modifying](http://leafletjs.com/reference.html#map-set-methods) and [getting](http://leafletjs.com/reference.html#map-get-methods) the state of the Map
 * [Conversion methods](http://leafletjs.com/reference.html#map-conversion-methods) and [Transformations](http://leafletjs.com/reference.html#transformation)
 * Take a look at [Controls](http://leafletjs.com/reference.html#control)
 
+---
+
+class: middle
+
+# Words of warning
+
+1. Start with Leaflet Objects
+2. Be wary of over-reliance on outside libraries
+  * (jQuery &amp; Underscore)
+3. There was a third one but I honestly can't remember it
+
+---
+
+class: middle
+
 # Leaflet Plugins, Mixins, and Extensions
 
 They're all the same thing really. The API provides a lot of the basic building blocks for making what you need.
+
+---
 
 ## It's got Class
 JavaScript, not so much...but Leaflet rolled their own and uses it throughout the ecosystem. Plan on using this if you are going to build your own plugin.
@@ -170,6 +251,8 @@ Things it will do for you:
 * Include mixins (e.g. L.events)
 * Define Statics
 * Constructor Hooks (modify other parts of Leaflet on init)
+
+---
 
 ```javascript
 var MyClass = L.Class.extend({
@@ -190,6 +273,8 @@ var a = new MyClass("Hello");
 a.greet("World");
 ```
 
+---
+
 ## Events
 
 ```javascript
@@ -208,74 +293,50 @@ off( … )
 fire( … )
 ```
 
+---
+class: middle
+
 ## Leaflet Utility Functions
 Before reaching for underscore, check `L.Util`.
-
 ```javascript
-// Leaflet
-L.Util.extend(destination, source)
-
-// Underscore
-_.extend(destination, *sources)
+L.Util.extend(destination, source);   // Leaflet
+_.extend(destination, *sources);      // Underscore
 
 
-// Leaflet
-L.Util.bind(function, object)
-
-// Underscore
-_.bind(function, object, *arguments)
+L.Util.bind(functin, object);
+_.bind(functin, object, *args);
 
 
-// Leaflet
-L.Util.limitExecByInterval(function, wait, [context])
-
-// Underscore
-_.debounce(function, wait, [immediate])
+L.Util.limitExecByInterval(functin, wait, [context]);
+_.debounce(functin, wait, [immediate]);
 
 
-// Leaflet
-L.Util.setOptions(object, options)
-
-// Underscore
-_.defaults(object, *defaults)
+L.Util.setOptions(object, options);
+_.defaults(object, *defaults);
 
 
-// Leaflet
-L.Util.template(templateString, data)
-
-// Underscore
-_.template(templateString, [data], [settings])
+L.Util.template(templateString, data);
+_.template(templateString, [data], [settings]);
 ```
 
-## Examples
+---
 
-### Project Specific Mixin
+class: middle
+
+# Three Examples
+
+---
+
+class: middle
+# Project Specific Mixin
+
+---
+
 ```javascript
 L.Util.VIPUtils = L.Util.extend({
 
   layerToJson: function (layer) {
     return jQuery.toJSON( layer.toGeoJSON() );
-  },
-
-  parseRawReverseGeoCode: function(response) {
-    var location = response.results[0].locations[0];
-    var html = "";
-
-    if (location.street !== "") { html = location.street; }
-
-    if (location.adminArea5 !== "") {
-      if (html !== "") { html += ", "; }
-      html += location.adminArea5;
-    }
-
-    // County, doesn't seem to be necesary
-    if (location.adminArea4 !== "") { html += ", " + location.adminArea4; }
-
-    if (location.adminArea3 !== "") { html += ", " + location.adminArea3; }
-
-    if (location.adminArea1 !== "") { html += ", " + location.adminArea1; }
-
-    return html;
   },
 
   // Reverse geocodes an address
@@ -298,7 +359,11 @@ L.Util.VIPUtils = L.Util.extend({
 });
 ```
 
-## Fixed Marker Plugin
+---
+
+# Fixed Marker Plugin
+
+---
 
 ```javascript
 var FixedMarker = L.Class.extend({
@@ -310,19 +375,27 @@ var FixedMarker = L.Class.extend({
     markerOptions: {
       opacity: 0,
       clickable: false
-       //,
-      // iconSize: [26, 41]
     },
     projectLocation: [38.906653, -77.042783]
   },
+```
 
+---
+
+```javascript
   initialize: function (map, options) {
     L.Util.setOptions(this, options);
     this._map = map;
 
     // Fixed marker is a fake. Just pretends to be an actual marker
-    this.$fixedMarker = $('<div/>').addClass('fixed_marker').appendTo(this._map.getContainer()),
-    this.$fixedMarkerTooltip = $('<div/>').html(lang.DragToSetLocation).addClass('fixed_marker_tooltip').hide().appendTo(this._map.getContainer());
+    this.$fixedMarker = $('<div/>')
+            .addClass('fixed_marker')
+            .appendTo(this._map.getContainer()),
+    this.$fixedMarkerTooltip = $('<div/>')
+            .html(lang.DragToSetLocation)
+            .addClass('fixed_marker_tooltip')
+            .hide()
+            .appendTo(this._map.getContainer());
     this.projectLocation = this.options.projectLocation;
     this.enabled = this.options.enabled;
 
@@ -333,7 +406,10 @@ var FixedMarker = L.Class.extend({
     this.latestGeocode = false;
     this.currentAddress = this.$address.html();
 
-    this.marker = L.marker(this.projectLocation, this.options.markerOptions).addTo(this._map);
+    this.marker = L.marker(
+      this.projectLocation,
+      this.options.markerOptions)
+      .addTo(this._map);
 
     if (this.enabled !== undefined && this.enabled === false) {
       this._disable(false);
@@ -342,6 +418,11 @@ var FixedMarker = L.Class.extend({
     }
   },
 
+```
+
+---
+
+```javascript
   // Updates the address when the user drags the map
   // this should be abstracted out and let this plugin
   // just handle showing a fixed marker on the map
@@ -353,7 +434,8 @@ var FixedMarker = L.Class.extend({
     this.$fixedMarkerTooltip.hide();
 
     try {
-      L.Util.VIPUtils.reverseGeocode(mapCenter.lat, mapCenter.lng, _.bind(function (resp) {
+      L.Util.VIPUtils.reverseGeocode(mapCenter.lat, mapCenter.lng,
+      _.bind(function (resp) {
         this.latestGeocode = resp;
         this.currentAddress = L.Util.VIPUtils.parseRawReverseGeoCode(resp);
 
@@ -372,7 +454,10 @@ var FixedMarker = L.Class.extend({
       this.$saveLocation.html('');
     }
   },
+```
 
+---
+```javascript
   getCityState: function () {
     var location = this.latestGeocode.results[0].locations[0];
     var cityState = "";
@@ -392,7 +477,11 @@ var FixedMarker = L.Class.extend({
 
     return cityState;
   },
+```
 
+---
+
+```javascript
   // Turns plugin off.
   _disable: function (fade) {
     var fadeDuration = 400;
@@ -412,36 +501,9 @@ var FixedMarker = L.Class.extend({
 
     return this;
   },
-
-  // Turns this plugin on.
-  _enable: function (fade) {
-    var fadeDuration = 400;
-
-    if (fade === false) {
-      fadeDuration = 0;
-    }
-
-    this.enabled = true;
-
-    if (this.$fixedMarkerTooltip.html() == lang.Saved) {
-      this.$fixedMarkerTooltip.html(lang.DragToSetLocation);
-      this.$saveLocation.html(lang.Save);
-    }
-
-    this.$fixedMarker.fadeIn(fadeDuration);
-    this.$fixedMarkerTooltip.fadeIn(fadeDuration);
-
-    if (this.latestGeocode !== false) {
-      this.$saveLocation.fadeIn(fadeDuration);
-    }
-
-    this.marker.setOpacity(0);
-
-    this._eventsOn();
-
-    return this;
-  },
-
+```
+---
+```javascript
   _eventsOn: function () {
     this._map.on('dragend zoomend', this._updateAddress, this);
 
@@ -461,7 +523,9 @@ var FixedMarker = L.Class.extend({
 
     return this;
   },
-
+```
+---
+```javascript
   // Called when updating the database
   _updateProjectLocation: function (e) {
     if (this.latestGeocode === undefined || this.latestGeocode === false ) { return; }
@@ -474,7 +538,9 @@ var FixedMarker = L.Class.extend({
 
     this._postProjectLocation(mapCenter.lat, mapCenter.lng, this.latestGeocode, this.currentAddress, slug, this._savedLocation);
   },
-
+```
+---
+```javascript
   // Handles AJAX post to database
   _postProjectLocation: function (lat, lng, lastGeocode, currAddress, slug, callback) {
     $.ajax({
@@ -492,7 +558,9 @@ var FixedMarker = L.Class.extend({
       success: callback
     });
   },
-
+```
+---
+```javascript
   // Called when successfully saved a location
   _savedLocation: function (response, status, jqXHR) {
     //lat, lng, lastGeocode
@@ -507,7 +575,9 @@ var FixedMarker = L.Class.extend({
 
     this.marker.setLatLng(this.projectLocation);
   },
-
+```
+---
+```javascript
   _state: function () {
     return this.enabled ? true : false;
   },
@@ -524,6 +594,8 @@ var FixedMarker = L.Class.extend({
   }
 });
 ```
+
+---
 
 ### Extending Leaflet.Draw
 
@@ -780,6 +852,10 @@ var AdvancedMapDraw = L.Class.extend({
   }
 });
 ```
+
+---
+
+class: middle
 
 # Really Advanced Topics
 Show Backbone.js version of MyVIP maps work

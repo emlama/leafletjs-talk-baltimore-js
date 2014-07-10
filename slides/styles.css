@@ -1,0 +1,54 @@
+body {
+/* font-size: 28px;
+ line-height: 1.3em;*/
+  font-family: "open-sans";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 28px;
+  color: #3e3f40;
+}
+
+h1, h2 {
+  font-family: "brandon-grotesque";
+  font-weight: 900;
+  /*font-style: italic;*/
+  line-height: 1.3em;
+  color: #3e3f40;
+  /*text-shadow: 1px 1px 1px #AEAEAE;*/
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.remark-code, .remark-inline-code {
+  font-family: "source-code-pro", Consolas, "Liberation Mono", Courier, monospace;
+  font-weight: normal;
+}
+
+.remark-slide-content {
+  padding: 1em 3em 1em 3em;
+  background: url(http://www.dtelepathy.com/ux-metrics/img/bg-white.gif) fixed repeat;
+}
+
+p {
+  font-size: 28px;
+  margin: 1em 0 0;
+}
+
+pre { white-space: pre-wrap; }
+
+ul, ol {
+  padding-left: 0;
+}
+
+li {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 28px;
+  margin-bottom: 0.5em;
+}
+
+a, a:visited {
+  color: #2ecc71;
+}
+
+.hljs-monokai .hljs-keyword, .hljs-monokai .hljs-literal, .hljs-monokai .css .hljs-id, .hljs-monokai .hljs-phpdoc, .hljs-monokai .hljs-title, .hljs-monokai .hljs-header, .hljs-monokai .haskell .hljs-type, .hljs-monokai .vbscript .hljs-built_in, .hljs-monokai .rsl .hljs-built_in, .hljs-monokai .smalltalk .hljs-class, .hljs-monokai .diff .hljs-header, .hljs-monokai .hljs-chunk, .hljs-monokai .hljs-winutils, .hljs-monokai .bash .hljs-variable, .hljs-monokai .apache .hljs-tag, .hljs-monokai .tex .hljs-special, .hljs-monokai .hljs-request, .hljs-monokai .hljs-status { font-weight: normal; }
