@@ -8,3 +8,5 @@ During his talk Matt will dive into Leaflet's API, strategies for structuring yo
 # Slides
 
 See [TALK.md](TALK.md).
+
+They're also [available online](http://bmorejs-leaflet-talk.matthewforr.com/#1).
