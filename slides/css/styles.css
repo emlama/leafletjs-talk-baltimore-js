@@ -1,0 +1,73 @@
+body {
+/* font-size: 28px;
+ line-height: 1.3em;*/
+  font-family: "open-sans", "Open Sans";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 28px;
+  color: #242526;
+}
+
+body.monokai {
+  background-color: #23241f;
+}
+
+h1, h2, h3 {
+  font-family: "brandon-grotesque", "Berthold Akzidenz Grotesk BE";
+  font-weight: 900;
+  line-height: 1.3em;
+  color: #242526;
+}
+
+h1 {
+  letter-spacing: 2px;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+h2 {
+  text-transform: uppercase;
+  line-height: 1.2em;
+  letter-spacing: 2px;
+}
+
+h3 {}
+
+.remark-code, .remark-inline-code {
+  font-family: "source-code-pro", Consolas, "Liberation Mono", Courier, monospace;
+  font-weight: normal;
+}
+
+.remark-slide-content {
+  padding: 1em 3em 1em 3em;
+  background: url(../images/bg-white.gif) fixed repeat;
+}
+
+p {
+  font-size: 28px;
+  margin: 1em 0 0;
+}
+
+pre { white-space: pre-wrap; }
+
+ul, ol {
+  padding-left: 0;
+}
+
+li {
+  font-weight: 600;
+  font-style: normal;
+  font-size: 28px;
+  margin-bottom: 0.5em;
+}
+
+a, a:visited {
+  color: #2ecc71;
+}
+
+.hljs-monokai .hljs-keyword, .hljs-monokai .hljs-literal, .hljs-monokai .css .hljs-id, .hljs-monokai .hljs-phpdoc, .hljs-monokai .hljs-title, .hljs-monokai .hljs-header, .hljs-monokai .haskell .hljs-type, .hljs-monokai .vbscript .hljs-built_in, .hljs-monokai .rsl .hljs-built_in, .hljs-monokai .smalltalk .hljs-class, .hljs-monokai .diff .hljs-header, .hljs-monokai .hljs-chunk, .hljs-monokai .hljs-winutils, .hljs-monokai .bash .hljs-variable, .hljs-monokai .apache .hljs-tag, .hljs-monokai .tex .hljs-special, .hljs-monokai .hljs-request, .hljs-monokai .hljs-status { font-weight: normal; }
+
+.naked {
+  margin: 0;
+}
+}

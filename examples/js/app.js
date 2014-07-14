@@ -20,8 +20,12 @@ var baseMaps = {
 
 L.control.layers(baseMaps).addTo(map);
 
-var marker = L.marker(baltimore);
+var html = '<div class="marker"><span class="number">1</span><img src="images/photo_55_32_32_all_16_s_c1.png" alt="Someone"></div>';
+var divMarker = L.divIcon({
+  html: html
+});
 
-marker.bindPopup('A happy popup');
+var marker = L.marker(baltimore, {icon: divMarker });
 
+// marker.bindPopup('A happy popup');
 marker.addTo(map);
