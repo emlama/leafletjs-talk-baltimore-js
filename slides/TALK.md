@@ -143,7 +143,6 @@ popupclose
 
 ---
 
-class:middle
 # Icons
 *AKA You don't want those blue markers*
 
@@ -183,8 +182,6 @@ var myIcon = L.divIcon({
 
 ---
 
-class:middle
-
 And then include it in when you make your marker.
 
 ```javascript
@@ -193,47 +190,14 @@ L.marker([lat, lng], {icon: myIcon}).addTo(map);
 
 ---
 
-class: middle
-
 # Popups are simple
-
----
-```javascript
-function markerClickAction (uid,lat,lng,type) {
-
-  var k = '.'+uid, obj = $(k);
-
-  if ( !obj.hasClass('open-leaflet') ) {
-
-    map.panTo(new L.LatLng(lat,lng));
-
-    $('.open_project, .open_expert').fadeOut()
-      .closest('.leaflet-marker-icon')
-      .removeClass('open-leaflet'); //hides open popups
-
-    obj.addClass('open-leaflet'); //opens correct popup
-    var klass = '.open_'+type;
-
-    obj.find(klass).fadeIn().on('click', 'button.close',
-    function (event) {
-      $('.open_project, .open_expert').fadeOut()
-        .closest('.leaflet-marker-icon')
-        .removeClass('open-leaflet');
-      event.stopPropagation();
-      return false;
-    }).on('click', 'a', function(event){
-      event.stopPropagation();
-    });
-  }
-}
-```
 
 ---
 
 ## Just do this
 
 ```javascript
-marker.bindPopup(popupContent);
+marker.bindPopup("Your popup content"); // Can be HTML
 
 marker.on('click', function () {
   this.openPopup();
@@ -258,7 +222,7 @@ marker.on('click', function () {
 1. Start with Leaflet Objects
 2. Be wary of over-reliance on outside libraries
   * (jQuery &amp; Underscore)
-3. There was a third one but I honestly can't remember it
+3. Clear separation of concerns
 
 ---
 

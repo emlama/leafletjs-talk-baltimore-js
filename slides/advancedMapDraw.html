@@ -52,7 +52,7 @@
     this.popup = L.popup({
       closeButton: false,
       closeOnClick: false
-    }).setContent('<a class="toggleEdit">' + lang.EditProjectLocation + '</a>');
+    }).setContent('&lt;a class="toggleEdit"&gt;' + lang.EditProjectLocation + '&lt;/a&gt;');
 
     this.fm.marker.bindPopup(this.popup).openPopup();
 
@@ -89,24 +89,32 @@
         featureGroup: this.drawnItems
       }
     });
+
     this._map.addControl(this.drawControl);
-
     this.drawnItems.addTo(this._map);
+    this.addItemsToMap(this.mapData)
+    this._eventsOn();
+  },
 
-    /* When I created this last check it seemed logical but now it isn't
-     * Ima leave it here in case it does come in handy.
-     *
-    // Create some polygons from database data and enable events
-    if (this.mapData instanceof Array && this.mapData.length > 0) {
-      this.addItemsToMap(this.mapData)._eventsOn();
-    } else {
-      // bail out
-      this.drawControl.removeFrom(this._map);
-      this._map.closePopup();
-      this.$editLocation.remove();
-    }
-    */
-    this.addItemsToMap(this.mapData)._eventsOn();
+  _eventsOn: function () {
+    // leaflet events
+    this._map.on('draw:created', this._handleLayerCreated, this);
+    this._map.on('draw:edited', this._handleLayerEdited, this);
+    this._map.on('draw:deleted', this._handleLayerDeleted, this);
+    this.fm.on('savedaddress', this._togglProjectEdit, this);
+
+    // jQuery events
+    $('.map_box').on('click', '.toggleEdit', $.proxy(this._togglProjectEdit, this));
+  },
+
+  _eventsOff: function () {
+    // leaflet events
+    this._map.off('draw:created', this._handleLayerCreated, this);
+    this._map.off('draw:edited', this._handleLayerEdited, this);
+    this._map.off('draw:deleted', this._handleLayerDeleted, this);
+
+    // jQuery events
+    $('.map_box').off('click', '.toggleEdit', $.proxy(this._togglProjectEdit, this));
   },
 
   // Handles switching between the two modes
@@ -237,27 +245,6 @@
          */
       }
     }, this);
-  },
-
-  _eventsOn: function () {
-    // leaflet events
-    this._map.on('draw:created', this._handleLayerCreated, this);
-    this._map.on('draw:edited', this._handleLayerEdited, this);
-    this._map.on('draw:deleted', this._handleLayerDeleted, this);
-    this.fm.on('savedaddress', this._togglProjectEdit, this);
-
-    // jQuery events
-    $('.map_box').on('click', '.toggleEdit', $.proxy(this._togglProjectEdit, this));
-  },
-
-  _eventsOff: function () {
-    // leaflet events
-    this._map.off('draw:created', this._handleLayerCreated, this);
-    this._map.off('draw:edited', this._handleLayerEdited, this);
-    this._map.off('draw:deleted', this._handleLayerDeleted, this);
-
-    // jQuery events
-    $('.map_box').off('click', '.toggleEdit', $.proxy(this._togglProjectEdit, this));
   }
 });
       </code>

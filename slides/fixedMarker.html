@@ -64,7 +64,7 @@
   _updateAddress: function () {
     var mapCenter = this._map.getCenter();
 
-    this.$address.html('<img src="/images/ajax-loader.gif" style="width: 14px; height: 14px;" />');
+    this.$address.html('&lt;img src="/images/ajax-loader.gif" style="width: 14px; height: 14px;" /&gt;');
     this.$saveLocation.hide();
     this.$fixedMarkerTooltip.hide();
 
@@ -155,7 +155,7 @@
     if (this.latestGeocode === undefined || this.latestGeocode === false ) { return; }
 
     // If so continue and notify the user we are doing something.
-    $(e.currentTarget).html('<img src="/images/ajax-loader.gif" style="width: 14px; height: 14px;" />');
+    $(e.currentTarget).html('&lt;img src="/images/ajax-loader.gif" style="width: 14px; height: 14px;" /&gt;');
 
     var mapCenter = this._map.getCenter();
     this.projectLocation = mapCenter;
