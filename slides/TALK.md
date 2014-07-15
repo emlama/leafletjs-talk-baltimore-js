@@ -23,10 +23,6 @@ class:middle, center
 
 ---
 
-# *Get on with it already*
-
----
-
 ## Three Reasons to give Leaflet a try
 
 1. Open Source with serious backers
