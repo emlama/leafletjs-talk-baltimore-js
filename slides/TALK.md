@@ -200,8 +200,6 @@ marker.on('click', function () {
 });
 ```
 
-*I was able to do this by shoving the whole popup into `L.divIcon`.* **Totally bad form.**
-
 ---
 
 ## Other things to read up on
@@ -219,6 +217,14 @@ marker.on('click', function () {
 2. Be wary of over-reliance on outside libraries
   * (jQuery &amp; Underscore)
 3. Clear separation of concerns
+4. There was a fourth, but I can't remember it!?!
+5. Cloudmade does not exist anymore
+6. Multi polygons are a pain to work with
+
+???
+- For your own markers, consider extending L.Marker
+- Use internal Leaflet functions
+- Use 
 
 ---
 
