@@ -14,7 +14,7 @@ class:middle, center
 ---
 
 # Who the #^!! is this ginger?
-*or why you should (or should not) listen to me*
+*or why you should (or shouldn't) listen to me*
 
 ???
 - Came to Baltimore 6 years ago to build websites
